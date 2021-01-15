@@ -15,6 +15,7 @@ import Following from "./Following";
 import Follower from "./Follower";
 import Tag from "./Tag";
 import Report from "./Report";
+import Image from "./Image";
 
 @Entity()
 class User extends BaseEntity {
@@ -27,11 +28,23 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   username: string;
 
+  @Column({ type: "text" })
+  firstName: string;
+
+  @Column({ type: "text" })
+  lastName: string;
+
   @Column({ type: "text", nullable: true })
   password: string;
 
   @Column({ type: "text", nullable: true })
   gender: string;
+
+  @Column({ type: "number" })
+  age: number;
+
+  @OneToMany((type) => Image, (image) => image.user)
+  images: Image[];
 
   @Column({ type: "text", nullable: true })
   profilePhoto: string;
