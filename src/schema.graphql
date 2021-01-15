@@ -1,0 +1,70 @@
+type Tag {
+  id: Int!
+  title: String!
+  user: User!
+  userId: Int
+  createdAt: String
+}
+
+type Follower {
+  id: Int!
+  user: User!
+  userId: Int
+  isLiked: Boolean
+  createdAt: String
+}
+
+type Following {
+  id: Int!
+  user: User!
+  userId: Int
+  isLiked: Boolean
+  createdAt: String
+}
+
+type Image {
+  id: Int!
+  user: User!
+  userId: Int
+  url: String!
+  createdAt: String
+}
+
+type Report {
+  id: Int!
+  user: User!
+  userId: Int!
+  createdAt: String
+}
+
+type User {
+  id: Int!
+  email: String!
+  password: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  intro: String!
+  gender: String!
+  age: Int!
+  location: String!
+  lastLat: Float
+  lastLng: Float
+  secretCode: String
+  images: [Image]
+  following: [Following]
+  followingcount: Int
+  follower: [Follower]
+  followercount: Int
+  tags: [Tag]
+  fameRating: Int
+  isMatch: Boolean!
+  isReported: [Report]
+  isBlocked: Boolean!
+  createdAt: String
+  updatedAt: String
+}
+
+type Query {
+  users: [User]
+}

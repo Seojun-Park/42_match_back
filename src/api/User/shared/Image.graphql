@@ -1,0 +1,7 @@
+type Image {
+  id: Int!
+  user: User!
+  userId: Int
+  url: String!
+  createdAt: String
+}

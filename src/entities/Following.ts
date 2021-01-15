@@ -16,7 +16,7 @@ class Following extends BaseEntity {
   user: User;
 
   @Column()
-  followingId: number;
+  userId: number;
 
   @Column({ type: "boolean", default: false })
   isLiked: boolean;

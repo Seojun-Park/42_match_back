@@ -10,7 +10,7 @@ const allResolvers: any[] = fileLoader(
   path.join(__dirname, "./api/**/*.resolvers.*")
 );
 
-const mergedType = mergeTypes(allResolvers);
+const mergedType = mergeTypes(allTypes);
 const mergedResolvers = mergeResolvers(allResolvers);
 
 const schema = makeExecutableSchema({

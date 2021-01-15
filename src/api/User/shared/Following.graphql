@@ -1,0 +1,7 @@
+type Following {
+  id: Int!
+  user: User!
+  userId: Int
+  isLiked: Boolean
+  createdAt: String
+}

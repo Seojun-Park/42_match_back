@@ -1,5 +1,5 @@
 import cors from "cors";
-import { NextFunction, Response } from "express";
+// import { NextFunction, Response } from "express";
 import logger from "morgan";
 import helmet from "helmet";
 import schema from "./schema";

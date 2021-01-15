@@ -20,6 +20,9 @@ class Tag extends BaseEntity {
   @JoinColumn()
   user: User;
 
+  @Column()
+  userId: number;
+
   @CreateDateColumn()
   createdAt: Date;
 }

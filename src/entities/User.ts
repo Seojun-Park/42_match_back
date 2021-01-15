@@ -58,6 +58,9 @@ class User extends BaseEntity {
   @Column({ type: "text", nullable: true })
   location: string;
 
+  @Column({ type: "text", nullable: true })
+  intro: string;
+
   @Column({ type: "double precision", nullable: true })
   lastLat: number;
 
@@ -80,7 +83,7 @@ class User extends BaseEntity {
   @Column({ type: "boolean", default: false })
   isMatch: boolean;
 
-  @Column({ type: "number", nullable: true })
+  @Column({ type: "number", nullable: true, default: 0 })
   fameRating: number;
 
   @OneToMany((type) => Tag, (tag) => tag.user, { nullable: true })

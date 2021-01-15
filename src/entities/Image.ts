@@ -1,6 +1,7 @@
 import {
   BaseEntity,
   Column,
+  CreateDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn
@@ -19,6 +20,9 @@ class Image extends BaseEntity {
 
   @Column({ type: "text" })
   url: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
 
 export default Image;
