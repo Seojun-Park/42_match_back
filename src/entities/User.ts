@@ -28,16 +28,19 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   username: string;
 
+  @Column({ type: "text", nullable: true })
+  password: string;
+
+  @Column({ type: "text", nullable: true })
+  secretCode: string;
+
   @Column({ type: "text" })
   firstName: string;
 
   @Column({ type: "text" })
   lastName: string;
 
-  @Column({ type: "text", nullable: true })
-  password: string;
-
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text", nullable: true, enum: ["MALE", "FEMAIL"] })
   gender: string;
 
   @Column({ type: "number" })
