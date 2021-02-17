@@ -1,0 +1,8 @@
+type UserVerificationResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  UserVerification(email: String!, code: String!): UserVerificationResponse!
+}

@@ -13,10 +13,8 @@ const resolvers: Resolvers = {
       args: CreateAccountMutationArgs
     ): Promise<CreateAccountResponse> => {
       const { email } = args;
+      const exist = await User.findOne({ email });
       try {
-        const exist = await User.findOne({
-          email
-        });
         if (exist) {
           return {
             ok: false,

@@ -45,7 +45,7 @@ class User extends BaseEntity {
   @Column({ type: "text", nullable: true, enum: ["MALE", "FEMAIL"] })
   gender: string;
 
-  @Column({ type: "integer" })
+  @Column({ type: "integer", nullable: true })
   age: number;
 
   @OneToMany((type) => Image, (image) => image.user)
@@ -69,10 +69,14 @@ class User extends BaseEntity {
   @Column({ type: "double precision", nullable: true })
   lastLng: number;
 
-  @OneToMany((type) => Following, (following) => following.user)
+  @OneToMany((type) => Following, (following) => following.user, {
+    nullable: true
+  })
   following: Following[];
 
-  @OneToMany((type) => Follower, (follower) => follower.user)
+  @OneToMany((type) => Follower, (follower) => follower.user, {
+    nullable: true
+  })
   follower: Follower[];
 
   @OneToMany((type) => BlockedUser, (blockeduser) => blockeduser.user, {
@@ -92,11 +96,14 @@ class User extends BaseEntity {
   @ManyToMany((type) => Tag, (tag) => tag.user, { nullable: true })
   tags: Tag[];
 
-  @OneToMany((type) => Report, (report) => report.user)
+  @OneToMany((type) => Report, (report) => report.user, { nullable: true })
   isReported: Report[];
 
   @Column({ type: "boolean", default: false })
   isBlocked: boolean;
+
+  @Column({ type: "boolean", default: false })
+  isVerified: boolean;
 
   @CreateDateColumn()
   createdAt: string;

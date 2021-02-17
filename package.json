@@ -8,6 +8,7 @@
     "dependencies": {
         "@types/bcrypt": "^3.0.0",
         "@types/helmet": "^4.0.0",
+        "@types/nodemailer": "^6.4.0",
         "@types/passport": "^1.0.5",
         "@types/passport-jwt": "^3.0.3",
         "bcrypt": "^5.0.0",
@@ -20,6 +21,7 @@
         "helmet": "3.23.3",
         "merge-graphql-schemas": "^1.7.8",
         "morgan": "^1.10.0",
+        "nodemailer": "^6.4.18",
         "nodemon": "^2.0.7",
         "npm": "^6.14.11",
         "passport": "^0.4.1",

@@ -1,0 +1,8 @@
+type RequestCodeResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  RequestCode(email: String!): RequestCodeResponse!
+}
