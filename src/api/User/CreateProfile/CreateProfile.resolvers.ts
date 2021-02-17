@@ -39,12 +39,11 @@ const resolvers: Resolvers = {
           user.gender = gender;
           user.location = location;
           if (preference) {
-            preference.map((pre) => {
-              user.preference.push(pre);
-            });
+            user.preference = preference;
           } else {
             user.preference = [];
           }
+          user.save();
           return {
             ok: true,
             err: null,

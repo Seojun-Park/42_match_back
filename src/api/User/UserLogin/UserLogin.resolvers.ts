@@ -21,12 +21,20 @@ const resolvers: Resolvers = {
         }
         const checkPassword = await user.comparePassword(password);
         if (checkPassword) {
-          const token = createJWT(user.id);
-          return {
-            ok: true,
-            err: null,
-            token
-          };
+          if (user.isVerified) {
+            const token = createJWT(user.id);
+            return {
+              ok: true,
+              err: null,
+              token
+            };
+          } else {
+            return {
+              ok: false,
+              err: "You have to verify your email first",
+              token: null
+            };
+          }
         } else {
           return {
             ok: false,

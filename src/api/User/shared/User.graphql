@@ -5,9 +5,11 @@ type User {
   username: String!
   firstName: String!
   lastName: String!
+  profilePhoto: String
   intro: String
   gender: String
   age: Int
+  preference: [String]
   location: String
   lastLat: Float
   lastLng: Float
