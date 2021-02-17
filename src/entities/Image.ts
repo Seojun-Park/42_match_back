@@ -22,7 +22,7 @@ class Image extends BaseEntity {
   url: string;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: string;
 }
 
 export default Image;

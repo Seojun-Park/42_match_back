@@ -9,10 +9,10 @@ import {
 import User from "./User";
 
 @Entity()
-class Report extends BaseEntity {
+class BlockedUser extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
-  @ManyToOne((type) => User, (user) => user.isReported)
+  @ManyToOne((type) => User, (user) => user.block)
   user: User;
 
   @Column()
@@ -22,4 +22,4 @@ class Report extends BaseEntity {
   createdAt: string;
 }
 
-export default Report;
+export default BlockedUser;

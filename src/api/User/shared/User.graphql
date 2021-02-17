@@ -1,31 +1,31 @@
 type User {
-    id:Int!
-    email: String!
-    password: String!
-    username: String!
-    firstName: String!
-    lastName: String!
-    intro: String!
-    gender: String!
-    age: Int!
-    location: String!
-    lastLat: Float
-    lastLng: Float
-    secretCode: String
-    images: [Image]
-    following: [Following]
-    followingcount: Int
-    follower: [Follower]
-    followercount: Int
-    tags: [Tag]
-    fameRating: Int
-    isMatch: Boolean!
-    isReported: [Report]
-    isBlocked: Boolean!
-    createdAt: String
-    updatedAt: String
+  id: Int!
+  email: String!
+  password: String!
+  username: String!
+  firstName: String!
+  lastName: String!
+  intro: String!
+  gender: String!
+  age: Int!
+  location: String!
+  lastLat: Float
+  lastLng: Float
+  secretCode: String
+  images: [Image]
+  block: [Block]
+  following: [Following]
+  followingcount: Int
+  follower: [Follower]
+  followercount: Int
+  tags: [Tag]
+  fameRating: Int
+  isReported: [Report]
+  isBlocked: Boolean!
+  createdAt: String
+  updatedAt: String
 }
 
-type Query{
-    users: [User]
+type Query {
+  users: [User]
 }

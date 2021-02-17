@@ -4,7 +4,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  ManyToOne,
+  ManyToMany,
   PrimaryGeneratedColumn
 } from "typeorm";
 import User from "./User";
@@ -16,7 +16,7 @@ class Tag extends BaseEntity {
   @Column({ type: "text" })
   title: string;
 
-  @ManyToOne((type) => User, (user) => user.tags)
+  @ManyToMany((type) => User, (user) => user.tags)
   @JoinColumn()
   user: User;
 
@@ -24,7 +24,7 @@ class Tag extends BaseEntity {
   userId: number;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: string;
 }
 
 export default Tag;

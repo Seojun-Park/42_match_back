@@ -1,0 +1,5 @@
+type Block {
+  user: User!
+  userId: Int!
+  createdAt: String
+}

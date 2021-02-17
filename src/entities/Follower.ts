@@ -22,7 +22,7 @@ class Follower extends BaseEntity {
   isLiked: boolean;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: string;
 }
 
 export default Follower;

@@ -7,6 +7,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
@@ -16,6 +17,7 @@ import Follower from "./Follower";
 import Tag from "./Tag";
 import Report from "./Report";
 import Image from "./Image";
+import BlockedUser from "./Block";
 
 @Entity()
 class User extends BaseEntity {
@@ -43,7 +45,7 @@ class User extends BaseEntity {
   @Column({ type: "text", nullable: true, enum: ["MALE", "FEMAIL"] })
   gender: string;
 
-  @Column({ type: "number" })
+  @Column({ type: "integer" })
   age: number;
 
   @OneToMany((type) => Image, (image) => image.user)
@@ -73,26 +75,26 @@ class User extends BaseEntity {
   @OneToMany((type) => Follower, (follower) => follower.user)
   follower: Follower[];
 
-  @Column({ type: "number", default: 0 })
+  @OneToMany((type) => BlockedUser, (blockeduser) => blockeduser.user, {
+    nullable: true
+  })
+  block: BlockedUser[];
+
+  @Column({ type: "integer", default: 0 })
   followercount: number;
 
-  @Column({ type: "number", default: 0 })
+  @Column({ type: "integer", default: 0 })
   followingcount: number;
 
-  //   do i need to save it in the db?
-  @Column({ type: "boolean", default: false })
-  isMatch: boolean;
-
-  @Column({ type: "number", nullable: true, default: 0 })
+  @Column({ type: "integer", nullable: true, default: 0 })
   fameRating: number;
 
-  @OneToMany((type) => Tag, (tag) => tag.user, { nullable: true })
+  @ManyToMany((type) => Tag, (tag) => tag.user, { nullable: true })
   tags: Tag[];
 
   @OneToMany((type) => Report, (report) => report.user)
   isReported: Report[];
 
-  //   and this one as well
   @Column({ type: "boolean", default: false })
   isBlocked: boolean;
 

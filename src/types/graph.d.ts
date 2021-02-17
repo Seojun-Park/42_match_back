@@ -1,4 +1,4 @@
-export const typeDefs = ["type Tag {\n  id: Int!\n  title: String!\n  user: User!\n  userId: Int\n  createdAt: String\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Report {\n  id: Int!\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  intro: String!\n  gender: String!\n  age: Int!\n  location: String!\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isMatch: Boolean!\n  isReported: [Report]\n  isBlocked: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  users: [User]\n}\n"];
+export const typeDefs = ["type Tag {\n  id: Int!\n  title: String!\n  user: User!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype Mutation {\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(id: Int!, gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Report {\n  id: Int!\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  intro: String!\n  gender: String!\n  age: Int!\n  location: String!\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isReported: [Report]\n  isBlocked: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  users: [User]\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -26,7 +26,6 @@ export interface User {
   followercount: number | null;
   tags: Array<Tag> | null;
   fameRating: number | null;
-  isMatch: boolean;
   isReported: Array<Report> | null;
   isBlocked: boolean;
   createdAt: string | null;
@@ -70,4 +69,52 @@ export interface Report {
   user: User;
   userId: number;
   createdAt: string | null;
+}
+
+export interface Mutation {
+  CreateAccount: CreateAccountResponse;
+  CreateProfile: CreateProfileResponse;
+  UserLogin: UserLoginResponse;
+}
+
+export interface CreateAccountMutationArgs {
+  email: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
+export interface CreateProfileMutationArgs {
+  id: number;
+  gender: string;
+  age: number;
+  profilePhoto: string;
+  images: Array<string> | null;
+  preference: Array<string> | null;
+  location: string;
+  intro: string;
+}
+
+export interface UserLoginMutationArgs {
+  email: string;
+  password: string;
+}
+
+export interface CreateAccountResponse {
+  ok: boolean;
+  err: string | null;
+  token: string | null;
+}
+
+export interface CreateProfileResponse {
+  ok: boolean;
+  err: string | null;
+  user: User | null;
+}
+
+export interface UserLoginResponse {
+  ok: boolean;
+  err: string | null;
+  token: string | null;
 }

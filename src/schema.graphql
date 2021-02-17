@@ -6,6 +6,24 @@ type Tag {
   createdAt: String
 }
 
+type CreateAccountResponse {
+  ok: Boolean!
+  err: String
+  token: String
+}
+
+type Mutation {
+  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
+  CreateProfile(id: Int!, gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
+  UserLogin(email: String!, password: String!): UserLoginResponse!
+}
+
+type CreateProfileResponse {
+  ok: Boolean!
+  err: String
+  user: User
+}
+
 type Follower {
   id: Int!
   user: User!
@@ -58,7 +76,6 @@ type User {
   followercount: Int
   tags: [Tag]
   fameRating: Int
-  isMatch: Boolean!
   isReported: [Report]
   isBlocked: Boolean!
   createdAt: String
@@ -67,4 +84,10 @@ type User {
 
 type Query {
   users: [User]
+}
+
+type UserLoginResponse {
+  ok: Boolean!
+  err: String
+  token: String
 }
