@@ -4,7 +4,6 @@ import {
   UserVerificationResponse
 } from "../../../types/graph";
 import User from "../../../entities/User";
-import { generateToken } from "../../../utils/decodeJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -20,7 +19,6 @@ const resolvers: Resolvers = {
             user.secretCode = "";
             user.isVerified = true;
             user.save();
-            generateToken(user.id);
             return {
               ok: true,
               err: null

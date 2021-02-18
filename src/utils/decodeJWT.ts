@@ -44,9 +44,9 @@ export const sendMail = async (address: string, code: string) => {
   });
 };
 
-export const generateToken = (id) => {
-  const secret = process.env.JWT_SECRET;
-  return jwt.sign({ id }, secret as string, {
-    expiresIn: 10080
-  });
-};
+// export const generateToken = (id) => {
+//   const secret = process.env.JWT_SECRET;
+//   return jwt.sign({ id }, secret as string, {
+//     expiresIn: 10080
+//   });
+// };

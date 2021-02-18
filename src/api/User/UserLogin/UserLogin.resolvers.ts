@@ -2,6 +2,7 @@ import { Resolvers } from "../../../types/resolvers";
 import { UserLoginMutationArgs, UserLoginResponse } from "../../../types/graph";
 import User from "../../../entities/User";
 import createJWT from "../../../utils/createJWT";
+// import { generateToken } from "../../../utils/decodeJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -23,6 +24,7 @@ const resolvers: Resolvers = {
         if (checkPassword) {
           if (user.isVerified) {
             const token = createJWT(user.id);
+            // generateToken(user.id);
             return {
               ok: true,
               err: null,
