@@ -114,15 +114,13 @@ class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
 
-  public comparePassword(password: string): Promise<boolean> {
-    let data;
-    let result: any;
-    bcrypt.hash(password, 10, (err, hash) => {
-      data = hash;
-      result = bcrypt.compare(password, data, (err, res) => {
-        console.log(res);
-      });
+  public comparePassword(password: string): boolean {
+    let result;
+    let data = bcrypt.hash(password, 10, (err, hash) => {
+      console.log(hash, "this", this.password);
+      return hash;
     });
+    console.log(data);
     return result;
   }
 
