@@ -20,7 +20,7 @@ const resolvers: Resolvers = {
             token: null
           };
         }
-        const checkPassword = await user.comparePassword(password);
+        const checkPassword: boolean = await user.comparePassword(password);
         if (checkPassword) {
           if (user.isVerified) {
             const token = createJWT(user.id);

@@ -114,14 +114,27 @@ class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
 
-  public comparePassword(password: string): boolean {
-    let result;
-    let data = bcrypt.hash(password, 10, (err, hash) => {
-      console.log(hash, "this", this.password);
-      return hash;
+  public comparePassword(password: string): Promise<boolean> {
+    let result: boolean = false;
+    // bcrypt.hash(password, 10, (err, res) => {
+    // bcrypt.compare(password, this.password).then((res) => {
+    // console.log(res);
+    // });
+    // });
+    bcrypt.hash(password, 10, (err, hash) => {
+      if (err) {
+        throw err;
+      }
+      bcrypt.compare(password, hash, (err, res) => {
+        if (err) {
+          throw err;
+        }
+        result = res;
+        return res;
+      });
     });
-    console.log(data);
-    return result;
+    console.log(result);
+    return bcrypt.compare(password, this.password);
   }
 
   @BeforeInsert()
