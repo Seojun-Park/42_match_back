@@ -115,7 +115,7 @@ class User extends BaseEntity {
   updatedAt: string;
 
   public comparePassword(password: string): Promise<boolean> {
-    let result: boolean = false;
+    let result: boolean;
     // bcrypt.hash(password, 10, (err, res) => {
     // bcrypt.compare(password, this.password).then((res) => {
     // console.log(res);
@@ -129,11 +129,12 @@ class User extends BaseEntity {
         if (err) {
           throw err;
         }
+        console.log(res);
         result = res;
-        return res;
+        return result;
+        // return res;
       });
     });
-    console.log(result);
     return bcrypt.compare(password, this.password);
   }
 
