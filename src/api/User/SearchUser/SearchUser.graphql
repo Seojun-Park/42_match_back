@@ -1,0 +1,9 @@
+type SearchUserReponse {
+  ok: Boolean!
+  err: String
+  users: [User]
+}
+
+type Query {
+  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!
+}
