@@ -18,7 +18,7 @@ class Tag extends BaseEntity {
 
   @ManyToMany((type) => User, (user) => user.tags)
   @JoinColumn()
-  user: User;
+  user: User[];
 
   @Column()
   userId: number;

@@ -1,7 +1,23 @@
+type CreateTagResponse {
+  ok: Boolean!
+  err: String
+  tag: Tag
+}
+
+type Mutation {
+  CreateTag(title: String!): CreateTagResponse!
+  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
+  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
+  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
+  RequestCode(email: String!): RequestCodeResponse!
+  UserLogin(email: String!, password: String!): UserLoginResponse!
+  UserVerification(email: String!, code: String!): UserVerificationResponse!
+}
+
 type Tag {
   id: Int!
   title: String!
-  user: User!
+  user: [User]!
   userId: Int
   createdAt: String
 }
@@ -10,15 +26,6 @@ type CreateAccountResponse {
   ok: Boolean!
   err: String
   token: String
-}
-
-type Mutation {
-  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
-  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
-  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
-  RequestCode(email: String!): RequestCodeResponse!
-  UserLogin(email: String!, password: String!): UserLoginResponse!
-  UserVerification(email: String!, code: String!): UserVerificationResponse!
 }
 
 type CreateProfileResponse {
