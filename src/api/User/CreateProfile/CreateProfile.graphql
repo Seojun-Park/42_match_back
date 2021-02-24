@@ -1,18 +1,17 @@
-type CreateProfileResponse{
-    ok:Boolean!
-    err:String
-    user:User
+type CreateProfileResponse {
+  ok: Boolean!
+  err: String
+  user: User
 }
 
 type Mutation {
   CreateProfile(
-      id:Int!
-  gender: String!,
-  age: Int!,
-  profilePhoto:String!,
-  images:[String]
-  preference:[String]
-  location: String!
-  intro:String!
+    gender: String!
+    age: Int!
+    profilePhoto: String!
+    images: [String]
+    preference: [String]
+    location: String!
+    intro: String!
   ): CreateProfileResponse!
 }

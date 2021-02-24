@@ -10,10 +10,10 @@ const resolvers: Resolvers = {
   Mutation: {
     CreateProfile: async (
       _,
-      args: CreateProfileMutationArgs
+      args: CreateProfileMutationArgs,
+      { request, Authentification }
     ): Promise<CreateProfileResponse> => {
       const {
-        id,
         images,
         preference,
         profilePhoto,
@@ -22,8 +22,10 @@ const resolvers: Resolvers = {
         age,
         location
       } = args;
+      Authentification(request);
+      const user: User = request.user;
       try {
-        const user = await User.findOne({ id });
+        // const user = await User.findOne({ id });
         if (user) {
           if (images && images.length !== 0) {
             images.map(async (img) => {

@@ -19,6 +19,8 @@ import Report from "./Report";
 import Image from "./Image";
 import BlockedUser from "./Block";
 
+const BCRYPT_ROUNDS = 10;
+
 @Entity()
 class User extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
@@ -114,28 +116,9 @@ class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: string;
 
-  public comparePassword(password: string): Promise<boolean> {
-    let result: boolean;
-    // bcrypt.hash(password, 10, (err, res) => {
-    // bcrypt.compare(password, this.password).then((res) => {
-    // console.log(res);
-    // });
-    // });
-    bcrypt.hash(password, 10, (err, hash) => {
-      if (err) {
-        throw err;
-      }
-      bcrypt.compare(password, hash, (err, res) => {
-        if (err) {
-          throw err;
-        }
-        console.log(res);
-        result = res;
-        return result;
-        // return res;
-      });
-    });
-    return bcrypt.compare(password, this.password);
+  public comparePassword(password: string): any {
+    return true;
+    // return bcrypt.compare(password, this.password);
   }
 
   @BeforeInsert()
@@ -163,8 +146,8 @@ class User extends BaseEntity {
     }
   }
 
-  private hashPassword(password: string): Promise<string> {
-    return bcrypt.hash(password, 10);
+  private hashPassword(password: string): string {
+    return bcrypt.hashSync(password, BCRYPT_ROUNDS);
   }
 }
 

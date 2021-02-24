@@ -4,7 +4,10 @@ import User from "../entities/User";
 
 export const decodeJWT = async (token: string): Promise<User | undefined> => {
   try {
-    const decoded: any = jwt.verify(token, process.env.JWT_TOKEN || "");
+    const decoded: any = jwt.verify(
+      (token as string).includes(" ") ? token.split(" ")[1] : token,
+      process.env.JWT_SECRET || ""
+    );
     const { id } = decoded;
     const user = await User.findOne({ id });
     return user;

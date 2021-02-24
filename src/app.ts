@@ -6,6 +6,7 @@ import schema from "./schema";
 import { GraphQLServer, PubSub } from "graphql-yoga";
 import { authenticateJwt } from "./passport";
 import { decodeJWT } from "./utils/decodeJWT";
+import Authentification from "./utils/Authentification";
 
 class App {
   public app: GraphQLServer;
@@ -20,7 +21,8 @@ class App {
         return {
           request: req.request,
           pubSub: this.pubSub,
-          context
+          context,
+          Authentification
         };
       }
     });

@@ -24,7 +24,6 @@ const resolvers: Resolvers = {
         if (checkPassword) {
           if (user.isVerified) {
             const token = createJWT(user.id);
-            // generateToken(user.id);
             return {
               ok: true,
               err: null,
