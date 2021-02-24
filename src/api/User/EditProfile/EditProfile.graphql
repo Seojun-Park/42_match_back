@@ -1,0 +1,19 @@
+type EditProfileResponse {
+  ok: Boolean!
+  err: String
+  user: User
+}
+
+type Mutation {
+  EditProfile(
+    username: String!
+    firstName: String
+    lastName: String
+    profilePhoto: String
+    intro: String
+    gender: String
+    age: Int
+    preference: [String]
+    location: String
+  ): EditProfileResponse!
+}

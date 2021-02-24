@@ -13,7 +13,10 @@ const resolvers: Resolvers = {
       const { id } = args;
       try {
         if (id) {
-          const user: User | undefined = await User.findOne({ id });
+          const user: User | undefined = await User.findOne(
+            { id },
+            { relations: ["following", "follower", "tags", "images"] }
+          );
           if (user) {
             return {
               ok: true,

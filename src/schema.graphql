@@ -15,12 +15,19 @@ type CreateAccountResponse {
 type Mutation {
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
+  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
   RequestCode(email: String!): RequestCodeResponse!
   UserLogin(email: String!, password: String!): UserLoginResponse!
   UserVerification(email: String!, code: String!): UserVerificationResponse!
 }
 
 type CreateProfileResponse {
+  ok: Boolean!
+  err: String
+  user: User
+}
+
+type EditProfileResponse {
   ok: Boolean!
   err: String
   user: User
