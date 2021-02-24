@@ -25,7 +25,6 @@ const resolvers: Resolvers = {
       Authentification(request);
       const user: User = request.user;
       try {
-        // const user = await User.findOne({ id });
         if (user) {
           if (images && images.length !== 0) {
             images.map(async (img) => {

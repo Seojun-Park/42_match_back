@@ -1,8 +1,20 @@
-export const typeDefs = ["type Tag {\n  id: Int!\n  title: String!\n  user: User!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype Mutation {\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Block {\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Report {\n  id: Int!\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isReported: [Report]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype Query {\n  users: [User]\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
+export const typeDefs = ["type Tag {\n  id: Int!\n  title: String!\n  user: User!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype Mutation {\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype Query {\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  users: [User]\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Block {\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Report {\n  id: Int!\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isReported: [Report]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
+  GetMe: GetMeResponse;
+  GetUser: GetUserResponse;
   users: Array<User> | null;
+}
+
+export interface GetUserQueryArgs {
+  id: number;
+}
+
+export interface GetMeResponse {
+  ok: boolean;
+  err: string | null;
+  user: User | null;
 }
 
 export interface User {
@@ -79,6 +91,12 @@ export interface Report {
   user: User;
   userId: number;
   createdAt: string | null;
+}
+
+export interface GetUserResponse {
+  ok: boolean;
+  err: string | null;
+  user: User | null;
 }
 
 export interface Mutation {

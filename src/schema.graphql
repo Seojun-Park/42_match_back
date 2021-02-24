@@ -26,6 +26,24 @@ type CreateProfileResponse {
   user: User
 }
 
+type GetMeResponse {
+  ok: Boolean!
+  err: String
+  user: User
+}
+
+type Query {
+  GetMe: GetMeResponse!
+  GetUser(id: Int!): GetUserResponse!
+  users: [User]
+}
+
+type GetUserResponse {
+  ok: Boolean!
+  err: String
+  user: User
+}
+
 type RequestCodeResponse {
   ok: Boolean!
   err: String
@@ -97,10 +115,6 @@ type User {
   isVerified: Boolean!
   createdAt: String
   updatedAt: String
-}
-
-type Query {
-  users: [User]
 }
 
 type UserLoginResponse {
