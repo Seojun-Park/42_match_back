@@ -33,16 +33,23 @@ type EditProfileResponse {
   user: User
 }
 
+type GetFollowingResponse {
+  ok: Boolean!
+  err: String
+  following: [Following]
+}
+
+type Query {
+  GetFollowing(id: Int!): GetFollowingResponse!
+  GetMe: GetMeResponse!
+  GetUser(id: Int!): GetUserResponse!
+  users: [User]
+}
+
 type GetMeResponse {
   ok: Boolean!
   err: String
   user: User
-}
-
-type Query {
-  GetMe: GetMeResponse!
-  GetUser(id: Int!): GetUserResponse!
-  users: [User]
 }
 
 type GetUserResponse {

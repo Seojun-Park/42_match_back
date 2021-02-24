@@ -1,0 +1,9 @@
+type GetFollowingResponse {
+  ok: Boolean!
+  err: String
+  following: [Following]
+}
+
+type Query {
+  GetFollowing(id: Int!): GetFollowingResponse!
+}
