@@ -12,6 +12,7 @@ type Mutation {
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
   EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
   RequestCode(email: String!): RequestCodeResponse!
+  ToggleFollowing(id: Int!, action: String!): ToggleFollowingResponse!
   UserLogin(email: String!, password: String!): UserLoginResponse!
   UserVerification(email: String!, code: String!): UserVerificationResponse!
 }
@@ -113,7 +114,7 @@ type SearchUserReponse {
 type Follower {
   id: Int!
   user: User!
-  userId: Int
+  target: User!
   isLiked: Boolean
   createdAt: String
 }
@@ -121,7 +122,7 @@ type Follower {
 type Following {
   id: Int!
   user: User!
-  userId: Int
+  target: User!
   isLiked: Boolean
   createdAt: String
 }
@@ -162,6 +163,16 @@ type User {
   isVerified: Boolean!
   createdAt: String
   updatedAt: String
+}
+
+type ToggleFollowingResponse {
+  ok: Boolean!
+  err: String
+}
+
+enum ActionOptions {
+  FOLLOWING
+  UNFOLLOWING
 }
 
 type UserLoginResponse {

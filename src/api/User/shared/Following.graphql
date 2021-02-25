@@ -1,7 +1,7 @@
 type Following {
   id: Int!
   user: User!
-  userId: Int
+  target: User!
   isLiked: Boolean
   createdAt: String
 }

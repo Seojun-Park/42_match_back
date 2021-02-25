@@ -15,9 +15,6 @@ class Report extends BaseEntity {
   reporter: User;
 
   @Column({ type: "text" })
-  username: string;
-
-  @Column({ type: "text" })
   reason: string;
 
   @Column((type) => User)

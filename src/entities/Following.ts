@@ -15,9 +15,6 @@ class Following extends BaseEntity {
   @ManyToOne((type) => User, (user) => user.following)
   user: User;
 
-  @Column()
-  userId: number;
-
   @Column((type) => User)
   target: User;
 

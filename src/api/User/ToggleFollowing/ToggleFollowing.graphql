@@ -1,0 +1,13 @@
+type ToggleFollowingResponse {
+  ok: Boolean!
+  err: String
+}
+
+enum ActionOptions {
+  FOLLOWING
+  UNFOLLOWING
+}
+
+type Mutation {
+  ToggleFollowing(id: Int!, action: String!): ToggleFollowingResponse!
+}
