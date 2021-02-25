@@ -5,6 +5,7 @@ type BlockUserResponse {
 
 type Mutation {
   BlockUser(id: Int!): BlockUserResponse!
+  UnblockUser(id: Int!): UnblockUserResponse!
   CreateTag(title: String!): CreateTagResponse!
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
@@ -18,6 +19,11 @@ type Block {
   user: User!
   userId: Int!
   createdAt: String
+}
+
+type UnblockUserResponse {
+  ok: Boolean!
+  err: String
 }
 
 type CreateTagResponse {

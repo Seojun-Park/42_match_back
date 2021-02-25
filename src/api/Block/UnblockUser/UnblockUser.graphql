@@ -1,0 +1,8 @@
+type UnblockUserResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  UnblockUser(id: Int!): UnblockUserResponse!
+}

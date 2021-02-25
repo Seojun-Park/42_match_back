@@ -85,7 +85,8 @@ class User extends BaseEntity {
   follower: Follower[];
 
   @OneToMany((type) => BlockedUser, (blockeduser) => blockeduser.user, {
-    nullable: true
+    nullable: true,
+    onDelete: "CASCADE"
   })
   block: BlockedUser[];
 
@@ -101,7 +102,10 @@ class User extends BaseEntity {
   @ManyToMany((type) => Tag, (tag) => tag.user, { nullable: true })
   tags: Tag[];
 
-  @OneToMany((type) => Report, (report) => report.user, { nullable: true })
+  @OneToMany((type) => Report, (report) => report.user, {
+    nullable: true,
+    onDelete: "CASCADE"
+  })
   isReported: Report[];
 
   @Column({ type: "boolean", default: false })
