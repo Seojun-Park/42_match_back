@@ -9,7 +9,19 @@ export const decodeJWT = async (token: string): Promise<User | undefined> => {
       process.env.JWT_SECRET || ""
     );
     const { id } = decoded;
-    const user = await User.findOne({ id });
+    const user = await User.findOne(
+      { id },
+      {
+        relations: [
+          "block",
+          "block.user",
+          "following",
+          "follwer",
+          "image",
+          "report"
+        ]
+      }
+    );
     return user;
   } catch (err) {
     return undefined;

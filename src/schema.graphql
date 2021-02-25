@@ -1,10 +1,10 @@
-type CreateTagResponse {
+type BlockUserResponse {
   ok: Boolean!
   err: String
-  tag: Tag
 }
 
 type Mutation {
+  BlockUser(id: Int!): BlockUserResponse!
   CreateTag(title: String!): CreateTagResponse!
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
@@ -12,6 +12,18 @@ type Mutation {
   RequestCode(email: String!): RequestCodeResponse!
   UserLogin(email: String!, password: String!): UserLoginResponse!
   UserVerification(email: String!, code: String!): UserVerificationResponse!
+}
+
+type Block {
+  user: User!
+  userId: Int!
+  createdAt: String
+}
+
+type CreateTagResponse {
+  ok: Boolean!
+  err: String
+  tag: Tag
 }
 
 type Tag {
@@ -75,12 +87,6 @@ type SearchUserReponse {
   ok: Boolean!
   err: String
   users: [User]
-}
-
-type Block {
-  user: User!
-  userId: Int!
-  createdAt: String
 }
 
 type Follower {
