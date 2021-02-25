@@ -13,10 +13,13 @@ class BlockedUser extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
   @ManyToOne((type) => User, (user) => user.block)
-  user: User;
+  owner: User;
 
   @Column()
-  userId: number;
+  ownerId: number;
+
+  @Column((type) => User)
+  target: User;
 
   @CreateDateColumn()
   createdAt: string;

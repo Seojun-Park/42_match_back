@@ -14,21 +14,24 @@ const resolvers: Resolvers = {
       const user: User = request.user;
       const { id } = args;
       try {
-        const existed = user.block.find((item) => {
-          if (item.userId === id) {
+        const existed = user.block.map((item) => {
+          if (item.ownerId === id) {
             return true;
           } else {
             return false;
           }
         });
-        if (existed) {
+        if (existed.length !== 0) {
           return {
             ok: false,
             err: "You already blocked this user"
           };
         } else {
           const targetUser = await User.findOne({ id });
-          const block = await BlockedUser.create({ user: targetUser });
+          const block = await BlockedUser.create({
+            owner: user,
+            target: targetUser
+          }).save();
           user.block.push(block);
           user.save();
           return {

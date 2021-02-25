@@ -18,6 +18,9 @@ class Follower extends BaseEntity {
   @Column()
   userId: number;
 
+  @Column((type) => User)
+  target: User;
+
   @Column({ type: "boolean", default: false })
   isLiked: boolean;
 

@@ -84,7 +84,7 @@ class User extends BaseEntity {
   })
   follower: Follower[];
 
-  @OneToMany((type) => BlockedUser, (blockeduser) => blockeduser.user, {
+  @OneToMany((type) => BlockedUser, (blockeduser) => blockeduser.owner, {
     nullable: true,
     onDelete: "CASCADE"
   })

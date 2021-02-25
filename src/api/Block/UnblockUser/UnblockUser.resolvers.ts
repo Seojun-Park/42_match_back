@@ -4,7 +4,7 @@ import {
   UnblockUserResponse
 } from "../../../types/graph";
 import User from "../../../entities/User";
-import BlockedUser from "../../../entities/Block";
+// import BlockedUser from "../../../entities/Block";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -17,14 +17,14 @@ const resolvers: Resolvers = {
       const user: User = request.user;
       const { id } = args;
       try {
-        const blockedUser = user.block.find((user) => user.userId === id);
+        console.log(user.block);
+
+        const blockedUser = user.block.filter((user) => user.ownerId === id);
         if (blockedUser) {
-          const idx = user.block.indexOf(blockedUser);
-          user.block.splice(idx, 1);
-          user.save();
-          await BlockedUser.delete({ id: blockedUser.id });
+          // user.block.splice(blockedUser, 1);
+          // user.save();
           return {
-            ok: true,
+            ok: false,
             err: null
           };
         } else {

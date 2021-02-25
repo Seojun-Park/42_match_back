@@ -12,14 +12,7 @@ export const decodeJWT = async (token: string): Promise<User | undefined> => {
     const user = await User.findOne(
       { id },
       {
-        relations: [
-          "block",
-          "block.user",
-          "following",
-          "follwer",
-          "image",
-          "report"
-        ]
+        relations: ["images", "block", "following", "follower", "isReported"]
       }
     );
     return user;

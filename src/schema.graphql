@@ -16,8 +16,9 @@ type Mutation {
 }
 
 type Block {
-  user: User!
-  userId: Int!
+  owner: User!
+  ownerId: Int!
+  target: User!
   createdAt: String
 }
 

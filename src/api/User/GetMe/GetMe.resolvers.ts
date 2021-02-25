@@ -13,32 +13,11 @@ const resolvers: Resolvers = {
       const user: User = request.user;
       try {
         if (user) {
-          const fullUser = await User.findOne(
-            { id: user.id },
-            {
-              relations: [
-                "block",
-                "following",
-                "follower",
-                "images",
-                "tags",
-                "isReported"
-              ]
-            }
-          );
-          if (fullUser) {
-            return {
-              ok: true,
-              err: null,
-              user: fullUser
-            };
-          } else {
-            return {
-              ok: true,
-              err: "Not with full information",
-              user
-            };
-          }
+          return {
+            ok: true,
+            err: null,
+            user
+          };
         } else {
           return {
             ok: false,
