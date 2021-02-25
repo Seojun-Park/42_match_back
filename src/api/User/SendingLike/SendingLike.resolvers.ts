@@ -19,7 +19,7 @@ const resolvers: Resolvers = {
       try {
         const target: User | undefined = await User.findOne(
           { id },
-          { relations: ["block"] }
+          { relations: ["block", "likeTo"] }
         );
         if (target) {
           if (target.likeTo && target.likeTo.length !== 0) {
