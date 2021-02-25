@@ -16,14 +16,7 @@ const resolvers: Resolvers = {
           const user: User | undefined = await User.findOne(
             { id },
             {
-              relations: [
-                "following",
-                "following.user",
-                "follower",
-                "follwer.user",
-                "tags",
-                "images"
-              ]
+              relations: ["tags", "images"]
             }
           );
           if (user) {
