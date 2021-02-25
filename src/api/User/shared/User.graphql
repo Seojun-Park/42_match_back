@@ -16,12 +16,10 @@ type User {
   secretCode: String
   images: [Image]
   block: [Block]
-  following: [Following]
-  followingcount: Int
-  follower: [Follower]
-  followercount: Int
   tags: [Tag]
   fameRating: Int
+  likeTo: [Like]
+  likeFrom: [Like]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String

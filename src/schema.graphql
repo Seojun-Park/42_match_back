@@ -12,7 +12,7 @@ type Mutation {
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
   EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
   RequestCode(email: String!): RequestCodeResponse!
-  ToggleFollowing(id: Int!, action: String!): ToggleFollowingResponse!
+  SendingLike(id: Int!): SendingLikeResponse!
   UserLogin(email: String!, password: String!): UserLoginResponse!
   UserVerification(email: String!, code: String!): UserVerificationResponse!
 }
@@ -74,25 +74,19 @@ type EditProfileResponse {
   user: User
 }
 
-type GetFollowingResponse {
+type GetMeResponse {
   ok: Boolean!
   err: String
-  following: [Following]
+  user: User
 }
 
 type Query {
-  GetFollowing(id: Int!): GetFollowingResponse!
   GetMe: GetMeResponse!
   GetUser(id: Int!): GetUserResponse!
   SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!
   SearchUserByAge(age: Int!): SearchUserByAgeResponse!
   users: [User]
-}
-
-type GetMeResponse {
-  ok: Boolean!
-  err: String
-  user: User
+  ShowFameRanking: ShowFameRankingResponse!
 }
 
 type GetUserResponse {
@@ -118,20 +112,9 @@ type SearchUserByAgeResponse {
   users: [User]
 }
 
-type Follower {
-  id: Int!
-  user: User!
-  target: User!
-  isLiked: Boolean
-  createdAt: String
-}
-
-type Following {
-  id: Int!
-  user: User!
-  target: User!
-  isLiked: Boolean
-  createdAt: String
+type SendingLikeResponse {
+  ok: Boolean!
+  err: String
 }
 
 type Image {
@@ -140,6 +123,16 @@ type Image {
   userId: Int
   url: String!
   createdAt: String
+}
+
+type Like {
+  id: Int!
+  isMatch: Boolean!
+  status: String!
+  to: User!
+  from: User!
+  createdAt: String
+  updatedAt: String
 }
 
 type User {
@@ -160,26 +153,20 @@ type User {
   secretCode: String
   images: [Image]
   block: [Block]
-  following: [Following]
-  followingcount: Int
-  follower: [Follower]
-  followercount: Int
   tags: [Tag]
   fameRating: Int
+  likeTo: [Like]
+  likeFrom: [Like]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String
   updatedAt: String
 }
 
-type ToggleFollowingResponse {
+type ShowFameRankingResponse {
   ok: Boolean!
   err: String
-}
-
-enum ActionOptions {
-  FOLLOWING
-  UNFOLLOWING
+  users: [User]
 }
 
 type UserLoginResponse {

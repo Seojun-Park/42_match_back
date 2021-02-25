@@ -1,0 +1,8 @@
+type SendingLikeResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  SendingLike(id: Int!): SendingLikeResponse!
+}

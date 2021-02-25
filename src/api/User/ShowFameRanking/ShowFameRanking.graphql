@@ -1,0 +1,9 @@
+type ShowFameRankingResponse {
+  ok: Boolean!
+  err: String
+  users: [User]
+}
+
+type Query {
+  ShowFameRanking: ShowFameRankingResponse!
+}

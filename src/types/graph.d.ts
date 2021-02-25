@@ -1,17 +1,13 @@
-export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  ReportUser(id: Int!, reason: String!): ReportUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  ToggleFollowing(id: Int!, action: String!): ToggleFollowingResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype ReportUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Report {\n  id: Int!\n  reason: String!\n  target: User!\n  reporter: User!\n  createdAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetFollowingResponse {\n  ok: Boolean!\n  err: String\n  following: [Following]\n}\n\ntype Query {\n  GetFollowing(id: Int!): GetFollowingResponse!\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  SearchUserByAge(age: Int!): SearchUserByAgeResponse!\n  users: [User]\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SearchUserByAgeResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  target: User!\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  target: User!\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype ToggleFollowingResponse {\n  ok: Boolean!\n  err: String\n}\n\nenum ActionOptions {\n  FOLLOWING\n  UNFOLLOWING\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
+export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  ReportUser(id: Int!, reason: String!): ReportUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  SendingLike(id: Int!): SendingLikeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype ReportUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Report {\n  id: Int!\n  reason: String!\n  target: User!\n  reporter: User!\n  createdAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype Query {\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  SearchUserByAge(age: Int!): SearchUserByAgeResponse!\n  users: [User]\n  ShowFameRanking: ShowFameRankingResponse!\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SearchUserByAgeResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SendingLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Like {\n  id: Int!\n  isMatch: Boolean!\n  status: String!\n  to: User!\n  from: User!\n  createdAt: String\n  updatedAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  tags: [Tag]\n  fameRating: Int\n  likeTo: [Like]\n  likeFrom: [Like]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype ShowFameRankingResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
-  GetFollowing: GetFollowingResponse;
   GetMe: GetMeResponse;
   GetUser: GetUserResponse;
   SearchUser: SearchUserReponse;
   SearchUserByAge: SearchUserByAgeResponse;
   users: Array<User> | null;
-}
-
-export interface GetFollowingQueryArgs {
-  id: number;
+  ShowFameRanking: ShowFameRankingResponse;
 }
 
 export interface GetUserQueryArgs {
@@ -28,18 +24,10 @@ export interface SearchUserByAgeQueryArgs {
   age: number;
 }
 
-export interface GetFollowingResponse {
+export interface GetMeResponse {
   ok: boolean;
   err: string | null;
-  following: Array<Following> | null;
-}
-
-export interface Following {
-  id: number;
-  user: User;
-  target: User;
-  isLiked: boolean | null;
-  createdAt: string | null;
+  user: User | null;
 }
 
 export interface User {
@@ -60,12 +48,10 @@ export interface User {
   secretCode: string | null;
   images: Array<Image> | null;
   block: Array<Block> | null;
-  following: Array<Following> | null;
-  followingcount: number | null;
-  follower: Array<Follower> | null;
-  followercount: number | null;
   tags: Array<Tag> | null;
   fameRating: number | null;
+  likeTo: Array<Like> | null;
+  likeFrom: Array<Like> | null;
   isBlocked: boolean;
   isVerified: boolean;
   createdAt: string | null;
@@ -87,14 +73,6 @@ export interface Block {
   createdAt: string | null;
 }
 
-export interface Follower {
-  id: number;
-  user: User;
-  target: User;
-  isLiked: boolean | null;
-  createdAt: string | null;
-}
-
 export interface Tag {
   id: number;
   title: string;
@@ -103,10 +81,14 @@ export interface Tag {
   createdAt: string | null;
 }
 
-export interface GetMeResponse {
-  ok: boolean;
-  err: string | null;
-  user: User | null;
+export interface Like {
+  id: number;
+  isMatch: boolean;
+  status: string;
+  to: User;
+  from: User;
+  createdAt: string | null;
+  updatedAt: string | null;
 }
 
 export interface GetUserResponse {
@@ -127,6 +109,12 @@ export interface SearchUserByAgeResponse {
   users: Array<User> | null;
 }
 
+export interface ShowFameRankingResponse {
+  ok: boolean;
+  err: string | null;
+  users: Array<User> | null;
+}
+
 export interface Mutation {
   BlockUser: BlockUserResponse;
   UnblockUser: UnblockUserResponse;
@@ -136,7 +124,7 @@ export interface Mutation {
   CreateProfile: CreateProfileResponse;
   EditProfile: EditProfileResponse;
   RequestCode: RequestCodeResponse;
-  ToggleFollowing: ToggleFollowingResponse;
+  SendingLike: SendingLikeResponse;
   UserLogin: UserLoginResponse;
   UserVerification: UserVerificationResponse;
 }
@@ -192,9 +180,8 @@ export interface RequestCodeMutationArgs {
   email: string;
 }
 
-export interface ToggleFollowingMutationArgs {
+export interface SendingLikeMutationArgs {
   id: number;
-  action: string;
 }
 
 export interface UserLoginMutationArgs {
@@ -251,7 +238,7 @@ export interface RequestCodeResponse {
   err: string | null;
 }
 
-export interface ToggleFollowingResponse {
+export interface SendingLikeResponse {
   ok: boolean;
   err: string | null;
 }
@@ -274,5 +261,3 @@ export interface Report {
   reporter: User;
   createdAt: string | null;
 }
-
-export type ActionOptions = "FOLLOWING" | "UNFOLLOWING";

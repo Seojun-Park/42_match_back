@@ -1,0 +1,9 @@
+type Like {
+  id: Int!
+  isMatch: Boolean!
+  status: String!
+  to: User!
+  from: User!
+  createdAt: String
+  updatedAt: String
+}

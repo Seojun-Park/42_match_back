@@ -1,45 +1,39 @@
 import { Resolvers } from "../../../types/resolvers";
-import {
-  GetFollowingQueryArgs,
-  GetFollowingResponse
-} from "../../../types/graph";
+import { ShowFameRankingResponse } from "../../../types/graph";
 import User from "../../../entities/User";
 
 const resolvers: Resolvers = {
   Query: {
-    GetFollowing: async (
+    ShowFameRanking: async (
       _,
-      args: GetFollowingQueryArgs,
+      __,
       { request, Authentification }
-    ): Promise<GetFollowingResponse> => {
+    ): Promise<ShowFameRankingResponse> => {
       Authentification(request);
-      const { id } = args;
       try {
-        const user: User | undefined = await User.findOne(
-          { id },
-          { relations: ["following", "following.user"] }
-        );
-        if (user) {
+        const users: User[] = await User.find({ order: { fameRating: "ASC" } });
+        if (users) {
           return {
             ok: true,
             err: null,
-            following: user.following
+            users
           };
         } else {
           return {
             ok: false,
-            err: "No User Found",
-            following: null
+            err: "No Users Found",
+            users: null
           };
         }
       } catch (err) {
         return {
           ok: false,
           err: err.message,
-          following: null
+          users: null
         };
       }
     }
   }
 };
+
 export default resolvers;

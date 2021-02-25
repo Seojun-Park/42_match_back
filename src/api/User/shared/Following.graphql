@@ -1,7 +1,0 @@
-type Following {
-  id: Int!
-  user: User!
-  target: User!
-  isLiked: Boolean
-  createdAt: String
-}
