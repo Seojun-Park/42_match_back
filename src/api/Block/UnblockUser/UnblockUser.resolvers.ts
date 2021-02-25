@@ -4,6 +4,7 @@ import {
   UnblockUserResponse
 } from "../../../types/graph";
 import User from "../../../entities/User";
+import BlockedUser from "../../../entities/Block";
 // import BlockedUser from "../../../entities/Block";
 
 const resolvers: Resolvers = {
@@ -17,14 +18,19 @@ const resolvers: Resolvers = {
       const user: User = request.user;
       const { id } = args;
       try {
-        console.log(user.block);
-
-        const blockedUser = user.block.filter((user) => user.ownerId === id);
-        if (blockedUser) {
-          // user.block.splice(blockedUser, 1);
-          // user.save();
+        const blockedUser = user.block.findIndex((item, idx) => {
+          if (item.target.id === id) {
+            return idx;
+          } else {
+            return -1;
+          }
+        });
+        if (blockedUser >= 0) {
+          await BlockedUser.delete({ id: user.block[blockedUser].id });
+          user.block.splice(blockedUser, 1);
+          user.save();
           return {
-            ok: false,
+            ok: true,
             err: null
           };
         } else {
