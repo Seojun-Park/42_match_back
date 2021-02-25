@@ -4,6 +4,7 @@ import {
   CancelLikeResponse
 } from "../../../types/graph";
 import Like from "../../../entities/Like";
+// import User from "../../../entities/User";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -15,8 +16,20 @@ const resolvers: Resolvers = {
       Authentification(request);
       const { likeId } = args;
       try {
-        const like: Like | undefined = await Like.findOne({ id: likeId });
+        const like: Like | undefined = await Like.findOne(
+          { id: likeId },
+          { relations: ["to"] }
+        );
         if (like) {
+          // if like counting doesn't work properly, try this
+          // if (like.to) {
+          //   const target: User | undefined = await User.findOne({
+          //     id: like.to.id
+          //   });
+          //   if (target) {
+          //     target.fameRating -= 1;
+          //   }
+          // }
           await Like.delete({ id: likeId });
           return {
             ok: true,

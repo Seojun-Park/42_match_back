@@ -57,6 +57,7 @@ const resolvers: Resolvers = {
               }).save();
               target.likeTo.push(like);
               user.likeFrom.push(like);
+              target.fameRatingCounter();
               target.save();
               user.save();
               return {

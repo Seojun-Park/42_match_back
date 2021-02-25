@@ -29,10 +29,11 @@ const resolvers: Resolvers = {
         if (user) {
           if (images && images.length !== 0) {
             images.map(async (img) => {
-              await Image.create({
+              const image = await Image.create({
                 user,
                 url: img
               }).save();
+              user.images.push(image);
             });
           }
           user.age = age;

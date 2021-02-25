@@ -116,6 +116,14 @@ class User extends BaseEntity {
     }
   }
 
+  @BeforeInsert()
+  @BeforeUpdate()
+  async fameRatingCounter(): Promise<void> {
+    if (this.likeFrom && this.likeFrom.length !== 0) {
+      this.fameRating = this.likeFrom.length;
+    }
+  }
+
   private hashPassword(password: string): string {
     return bcrypt.hashSync(password, BCRYPT_ROUNDS);
   }
