@@ -85,6 +85,7 @@ type Query {
   GetMe: GetMeResponse!
   GetUser(id: Int!): GetUserResponse!
   SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!
+  SearchUserByAge(age: Int!): SearchUserByAgeResponse!
   users: [User]
 }
 
@@ -106,6 +107,12 @@ type RequestCodeResponse {
 }
 
 type SearchUserReponse {
+  ok: Boolean!
+  err: String
+  users: [User]
+}
+
+type SearchUserByAgeResponse {
   ok: Boolean!
   err: String
   users: [User]

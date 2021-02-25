@@ -11,19 +11,19 @@ register / connect / profile / search / like / chat with liked user
 
 ---
 ### Registration and Signin-in
-- [ ] Register with an email address / username / first & lastname / password(protected)
-- [ ] Email verification (send to user unique link to verify)
-- [ ] Login with username and password
+- [x] Register with an email address / username / first & lastname / password(protected)
+- [x] Email verification
+- [x] Login with email and password
 - [ ] Logout from any pages on the web site
-
+****
 ### User Profile
-- [ ] Create user profile page with folloing information:<br />
+- [x] Create user profile page with folloing information:<br />
     - The Gender<br />
     - Sexual Prefernces<br />
     - A biograph<br />
     - A list of interests with reusable tags(ex: #lala, #coucou)
     - Pictures, maximum 5, including 1 as Profile picture
-- [ ] Modify user profile information.
+- [x] Modify user profile information.
 - [ ] User is able to check whom "liked" and looked the user
 - [ ] User "fame rating" (*Sorting by likes count??)
 - [ ] GPS positioning(if the user doesn't allow the location, then force to insert it)

@@ -1,0 +1,9 @@
+type SearchUserByAgeResponse {
+  ok: Boolean!
+  err: String
+  users: [User]
+}
+
+type Query {
+  SearchUserByAge(age: Int!): SearchUserByAgeResponse!
+}
