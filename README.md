@@ -43,7 +43,7 @@ register / connect / profile / search / like / chat with liked user
     and the result of the users is sorted by age, location, "fame rating" and tags
 
 ### Profile of other users
-- [ ] Show other user's profile except for email address and password
+- [x] Show other user's profile except for email address and password
 - [ ] When two people "like" eachother, they are connected and able to chat.
 - [ ] Check the "fame rating"
 - [ ] User status(isOnline or offline, if the user is offline, show the last connection)
