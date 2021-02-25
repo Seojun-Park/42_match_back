@@ -15,7 +15,6 @@ import {
 import Following from "./Following";
 import Follower from "./Follower";
 import Tag from "./Tag";
-import Report from "./Report";
 import Image from "./Image";
 import BlockedUser from "./Block";
 
@@ -101,12 +100,6 @@ class User extends BaseEntity {
 
   @ManyToMany((type) => Tag, (tag) => tag.user, { nullable: true })
   tags: Tag[];
-
-  @OneToMany((type) => Report, (report) => report.user, {
-    nullable: true,
-    onDelete: "CASCADE"
-  })
-  isReported: Report[];
 
   @Column({ type: "boolean", default: false })
   isBlocked: boolean;

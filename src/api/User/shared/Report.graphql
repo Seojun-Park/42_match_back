@@ -1,6 +1,0 @@
-type Report {
-  id: Int!
-  user: User!
-  userId: Int!
-  createdAt: String
-}

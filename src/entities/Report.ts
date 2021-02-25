@@ -3,7 +3,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
   PrimaryGeneratedColumn
 } from "typeorm";
 import User from "./User";
@@ -12,11 +11,17 @@ import User from "./User";
 class Report extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
 
-  @ManyToOne((type) => User, (user) => user.isReported)
-  user: User;
+  @Column((type) => User)
+  reporter: User;
 
-  @Column()
-  userId: number;
+  @Column({ type: "text" })
+  username: string;
+
+  @Column({ type: "text" })
+  reason: string;
+
+  @Column((type) => User)
+  target: User;
 
   @CreateDateColumn()
   createdAt: string;

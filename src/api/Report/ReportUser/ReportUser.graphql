@@ -1,0 +1,8 @@
+type ReportUserResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  ReportUser(id: Int!): ReportUserResponse!
+}

@@ -6,6 +6,7 @@ type BlockUserResponse {
 type Mutation {
   BlockUser(id: Int!): BlockUserResponse!
   UnblockUser(id: Int!): UnblockUserResponse!
+  ReportUser(id: Int!): ReportUserResponse!
   CreateTag(title: String!): CreateTagResponse!
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
@@ -25,6 +26,20 @@ type Block {
 type UnblockUserResponse {
   ok: Boolean!
   err: String
+}
+
+type ReportUserResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Report {
+  id: Int!
+  username: String!
+  reason: String!
+  target: User!
+  reporter: User!
+  createdAt: String
 }
 
 type CreateTagResponse {
@@ -120,13 +135,6 @@ type Image {
   createdAt: String
 }
 
-type Report {
-  id: Int!
-  user: User!
-  userId: Int!
-  createdAt: String
-}
-
 type User {
   id: Int!
   email: String!
@@ -151,7 +159,6 @@ type User {
   followercount: Int
   tags: [Tag]
   fameRating: Int
-  isReported: [Report]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String

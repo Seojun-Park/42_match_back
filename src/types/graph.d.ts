@@ -1,4 +1,4 @@
-export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetFollowingResponse {\n  ok: Boolean!\n  err: String\n  following: [Following]\n}\n\ntype Query {\n  GetFollowing(id: Int!): GetFollowingResponse!\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  users: [User]\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Report {\n  id: Int!\n  user: User!\n  userId: Int!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isReported: [Report]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
+export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  ReportUser(id: Int!): ReportUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype ReportUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Report {\n  id: Int!\n  username: String!\n  reason: String!\n  target: User!\n  reporter: User!\n  createdAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetFollowingResponse {\n  ok: Boolean!\n  err: String\n  following: [Following]\n}\n\ntype Query {\n  GetFollowing(id: Int!): GetFollowingResponse!\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  users: [User]\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype Follower {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Following {\n  id: Int!\n  user: User!\n  userId: Int\n  isLiked: Boolean\n  createdAt: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  following: [Following]\n  followingcount: Int\n  follower: [Follower]\n  followercount: Int\n  tags: [Tag]\n  fameRating: Int\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -61,7 +61,6 @@ export interface User {
   followercount: number | null;
   tags: Array<Tag> | null;
   fameRating: number | null;
-  isReported: Array<Report> | null;
   isBlocked: boolean;
   isVerified: boolean;
   createdAt: string | null;
@@ -99,13 +98,6 @@ export interface Tag {
   createdAt: string | null;
 }
 
-export interface Report {
-  id: number;
-  user: User;
-  userId: number;
-  createdAt: string | null;
-}
-
 export interface GetMeResponse {
   ok: boolean;
   err: string | null;
@@ -127,6 +119,7 @@ export interface SearchUserReponse {
 export interface Mutation {
   BlockUser: BlockUserResponse;
   UnblockUser: UnblockUserResponse;
+  ReportUser: ReportUserResponse;
   CreateTag: CreateTagResponse;
   CreateAccount: CreateAccountResponse;
   CreateProfile: CreateProfileResponse;
@@ -141,6 +134,10 @@ export interface BlockUserMutationArgs {
 }
 
 export interface UnblockUserMutationArgs {
+  id: number;
+}
+
+export interface ReportUserMutationArgs {
   id: number;
 }
 
@@ -202,6 +199,11 @@ export interface UnblockUserResponse {
   err: string | null;
 }
 
+export interface ReportUserResponse {
+  ok: boolean;
+  err: string | null;
+}
+
 export interface CreateTagResponse {
   ok: boolean;
   err: string | null;
@@ -240,4 +242,13 @@ export interface UserLoginResponse {
 export interface UserVerificationResponse {
   ok: boolean;
   err: string | null;
+}
+
+export interface Report {
+  id: number;
+  username: string;
+  reason: string;
+  target: User;
+  reporter: User;
+  createdAt: string | null;
 }

@@ -22,7 +22,6 @@ type User {
   followercount: Int
   tags: [Tag]
   fameRating: Int
-  isReported: [Report]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String
