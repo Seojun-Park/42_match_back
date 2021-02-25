@@ -15,11 +15,11 @@ const resolvers: Resolvers = {
     ): Promise<ReportUserResponse> => {
       Authentification(request);
       const user: User = request.user;
-      const { id } = args;
+      const { id, reason } = args;
       try {
         const target = await User.findOne({ id });
         if (target) {
-          await Report.create({ reporter: user, target }).save();
+          await Report.create({ reporter: user, target, reason }).save();
           return {
             ok: true,
             err: null

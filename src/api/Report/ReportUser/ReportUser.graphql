@@ -4,5 +4,5 @@ type ReportUserResponse {
 }
 
 type Mutation {
-  ReportUser(id: Int!): ReportUserResponse!
+  ReportUser(id: Int!, reason: String!): ReportUserResponse!
 }

@@ -1,6 +1,5 @@
 type Report {
   id: Int!
-  username: String!
   reason: String!
   target: User!
   reporter: User!

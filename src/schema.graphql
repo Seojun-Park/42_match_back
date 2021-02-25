@@ -6,7 +6,7 @@ type BlockUserResponse {
 type Mutation {
   BlockUser(id: Int!): BlockUserResponse!
   UnblockUser(id: Int!): UnblockUserResponse!
-  ReportUser(id: Int!): ReportUserResponse!
+  ReportUser(id: Int!, reason: String!): ReportUserResponse!
   CreateTag(title: String!): CreateTagResponse!
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
@@ -35,7 +35,6 @@ type ReportUserResponse {
 
 type Report {
   id: Int!
-  username: String!
   reason: String!
   target: User!
   reporter: User!

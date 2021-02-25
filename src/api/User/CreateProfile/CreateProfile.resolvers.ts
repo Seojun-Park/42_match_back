@@ -31,7 +31,7 @@ const resolvers: Resolvers = {
               await Image.create({
                 user,
                 url: img
-              });
+              }).save();
             });
           }
           user.age = age;
