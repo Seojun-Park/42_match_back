@@ -22,6 +22,7 @@ const resolvers: Resolvers = {
         age,
         location
       } = args;
+      // Gender has to enum "MALE" / "FEMALE"
       Authentification(request);
       const user: User = request.user;
       try {
