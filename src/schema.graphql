@@ -8,6 +8,8 @@ type Mutation {
   UnblockUser(id: Int!): UnblockUserResponse!
   ReportUser(id: Int!, reason: String!): ReportUserResponse!
   CreateTag(title: String!): CreateTagResponse!
+  AcceptLike(likeId: Int!): AcceptLikeResponse!
+  CancelLike(likeId: Int!): CancelLikeResponse!
   CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!
   CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!
   EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!
@@ -54,6 +56,16 @@ type Tag {
   user: [User]!
   userId: Int
   createdAt: String
+}
+
+type AcceptLikeResponse {
+  ok: Boolean!
+  err: String
+}
+
+type CancelLikeResponse {
+  ok: Boolean!
+  err: String
 }
 
 type CreateAccountResponse {

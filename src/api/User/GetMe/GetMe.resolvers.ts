@@ -11,6 +11,7 @@ const resolvers: Resolvers = {
     ): Promise<GetMeResponse> => {
       Authentification(request);
       const user: User = request.user;
+      console.log(user);
       try {
         if (user) {
           return {

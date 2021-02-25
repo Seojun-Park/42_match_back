@@ -1,0 +1,8 @@
+type CancelLikeResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  CancelLike(likeId: Int!): CancelLikeResponse!
+}

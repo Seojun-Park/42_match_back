@@ -16,7 +16,7 @@ class Like extends BaseEntity {
   @Column({ type: "boolean", default: false })
   isMatch: boolean;
 
-  @Column({ type: "text", enum: ["WAITING", "ACCEPTED"], default: "ACCEPTED" })
+  @Column({ type: "text", enum: ["WAITING", "ACCEPTED"], default: "WAITING" })
   status: string;
 
   @ManyToOne((type) => User, (user) => user.likeTo)

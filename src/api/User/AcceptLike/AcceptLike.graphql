@@ -1,0 +1,8 @@
+type AcceptLikeResponse {
+  ok: Boolean!
+  err: String
+}
+
+type Mutation {
+  AcceptLike(likeId: Int!): AcceptLikeResponse!
+}

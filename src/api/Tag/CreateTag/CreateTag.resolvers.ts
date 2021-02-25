@@ -26,9 +26,11 @@ const resolvers: Resolvers = {
             tag: existed
           };
         } else {
-          const newTag = await Tag.create({ title });
+          const newTag = await Tag.create({ title }).save();
+          user.tags.push(newTag); //double implement check needed
           newTag.user.push(user);
           newTag.save();
+          user.save();
           return {
             ok: true,
             err: null,
