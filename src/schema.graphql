@@ -6,6 +6,7 @@ type BlockUserResponse {
 type Mutation {
   BlockUser(id: Int!): BlockUserResponse!
   UnblockUser(id: Int!): UnblockUserResponse!
+  SendMessage(receiverId: Int!, text: String!, chatId: Int): SendMessageResponse!
   ReportUser(id: Int!, reason: String!): ReportUserResponse!
   CreateTag(title: String!): CreateTagResponse!
   AcceptLike(likeId: Int!): AcceptLikeResponse!
@@ -31,6 +32,16 @@ type UnblockUserResponse {
   err: String
 }
 
+type Subscription {
+  MessageNotification: Message
+  MessageSub(userId: Int!): Message
+}
+
+type SendMessageResponse {
+  ok: Boolean!
+  err: String
+}
+
 type Chat {
   id: Int!
   messages: [Message]
@@ -42,8 +53,10 @@ type Message {
   id: Int!
   chat: Chat!
   chatId: Int!
-  user: User!
-  userId: Int!
+  sender: User
+  senderId: Int
+  receiver: User
+  receiverId: Int
   text: String!
   createdAt: String!
   updatedAt: String!
@@ -187,7 +200,8 @@ type User {
   fameRating: Int
   likeTo: [Like]
   likeFrom: [Like]
-  messages: [Message]
+  sent: [Message]
+  received: [Message]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String

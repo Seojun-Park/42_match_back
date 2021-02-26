@@ -1,4 +1,4 @@
-export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  ReportUser(id: Int!, reason: String!): ReportUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  AcceptLike(likeId: Int!): AcceptLikeResponse!\n  CancelLike(likeId: Int!): CancelLikeResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  SendingLike(id: Int!): SendingLikeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Chat {\n  id: Int!\n  messages: [Message]\n  createdAt: String\n  updatedAt: String\n}\n\ntype Message {\n  id: Int!\n  chat: Chat!\n  chatId: Int!\n  user: User!\n  userId: Int!\n  text: String!\n  createdAt: String!\n  updatedAt: String!\n}\n\ntype ReportUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Report {\n  id: Int!\n  reason: String!\n  target: User!\n  reporter: User!\n  createdAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype AcceptLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype CancelLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype Query {\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  SearchUserByAge(age: Int!): SearchUserByAgeResponse!\n  users: [User]\n  ShowFameRanking: ShowFameRankingResponse!\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SearchUserByAgeResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SendingLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Like {\n  id: Int!\n  isMatch: Boolean!\n  status: String!\n  to: User!\n  from: User!\n  createdAt: String\n  updatedAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  tags: [Tag]\n  fameRating: Int\n  likeTo: [Like]\n  likeFrom: [Like]\n  messages: [Message]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype ShowFameRankingResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
+export const typeDefs = ["type BlockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Mutation {\n  BlockUser(id: Int!): BlockUserResponse!\n  UnblockUser(id: Int!): UnblockUserResponse!\n  SendMessage(receiverId: Int!, text: String!, chatId: Int): SendMessageResponse!\n  ReportUser(id: Int!, reason: String!): ReportUserResponse!\n  CreateTag(title: String!): CreateTagResponse!\n  AcceptLike(likeId: Int!): AcceptLikeResponse!\n  CancelLike(likeId: Int!): CancelLikeResponse!\n  CreateAccount(email: String!, username: String!, firstName: String!, lastName: String!, password: String!): CreateAccountResponse!\n  CreateProfile(gender: String!, age: Int!, profilePhoto: String!, images: [String], preference: [String], location: String!, intro: String!): CreateProfileResponse!\n  EditProfile(username: String!, firstName: String, lastName: String, profilePhoto: String, intro: String, gender: String, age: Int, preference: [String], location: String): EditProfileResponse!\n  RequestCode(email: String!): RequestCodeResponse!\n  SendingLike(id: Int!): SendingLikeResponse!\n  UserLogin(email: String!, password: String!): UserLoginResponse!\n  UserVerification(email: String!, code: String!): UserVerificationResponse!\n}\n\ntype Block {\n  owner: User!\n  ownerId: Int!\n  target: User!\n  createdAt: String\n}\n\ntype UnblockUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Subscription {\n  MessageNotification: Message\n  MessageSub(userId: Int!): Message\n}\n\ntype SendMessageResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Chat {\n  id: Int!\n  messages: [Message]\n  createdAt: String\n  updatedAt: String\n}\n\ntype Message {\n  id: Int!\n  chat: Chat!\n  chatId: Int!\n  sender: User\n  senderId: Int\n  receiver: User\n  receiverId: Int\n  text: String!\n  createdAt: String!\n  updatedAt: String!\n}\n\ntype ReportUserResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Report {\n  id: Int!\n  reason: String!\n  target: User!\n  reporter: User!\n  createdAt: String\n}\n\ntype CreateTagResponse {\n  ok: Boolean!\n  err: String\n  tag: Tag\n}\n\ntype Tag {\n  id: Int!\n  title: String!\n  user: [User]!\n  userId: Int\n  createdAt: String\n}\n\ntype AcceptLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype CancelLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype CreateAccountResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype CreateProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype EditProfileResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype GetMeResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype Query {\n  GetMe: GetMeResponse!\n  GetUser(id: Int!): GetUserResponse!\n  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!\n  SearchUserByAge(age: Int!): SearchUserByAgeResponse!\n  users: [User]\n  ShowFameRanking: ShowFameRankingResponse!\n}\n\ntype GetUserResponse {\n  ok: Boolean!\n  err: String\n  user: User\n}\n\ntype RequestCodeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype SearchUserReponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SearchUserByAgeResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype SendingLikeResponse {\n  ok: Boolean!\n  err: String\n}\n\ntype Image {\n  id: Int!\n  user: User!\n  userId: Int\n  url: String!\n  createdAt: String\n}\n\ntype Like {\n  id: Int!\n  isMatch: Boolean!\n  status: String!\n  to: User!\n  from: User!\n  createdAt: String\n  updatedAt: String\n}\n\ntype User {\n  id: Int!\n  email: String!\n  password: String!\n  username: String!\n  firstName: String!\n  lastName: String!\n  profilePhoto: String\n  intro: String\n  gender: String\n  age: Int\n  preference: [String]\n  location: String\n  lastLat: Float\n  lastLng: Float\n  secretCode: String\n  images: [Image]\n  block: [Block]\n  tags: [Tag]\n  fameRating: Int\n  likeTo: [Like]\n  likeFrom: [Like]\n  sent: [Message]\n  received: [Message]\n  isBlocked: Boolean!\n  isVerified: Boolean!\n  createdAt: String\n  updatedAt: String\n}\n\ntype ShowFameRankingResponse {\n  ok: Boolean!\n  err: String\n  users: [User]\n}\n\ntype UserLoginResponse {\n  ok: Boolean!\n  err: String\n  token: String\n}\n\ntype UserVerificationResponse {\n  ok: Boolean!\n  err: String\n}\n"];
 /* tslint:disable */
 
 export interface Query {
@@ -52,7 +52,8 @@ export interface User {
   fameRating: number | null;
   likeTo: Array<Like> | null;
   likeFrom: Array<Like> | null;
-  messages: Array<Message> | null;
+  sent: Array<Message> | null;
+  received: Array<Message> | null;
   isBlocked: boolean;
   isVerified: boolean;
   createdAt: string | null;
@@ -96,8 +97,10 @@ export interface Message {
   id: number;
   chat: Chat;
   chatId: number;
-  user: User;
-  userId: number;
+  sender: User | null;
+  senderId: number | null;
+  receiver: User | null;
+  receiverId: number | null;
   text: string;
   createdAt: string;
   updatedAt: string;
@@ -137,6 +140,7 @@ export interface ShowFameRankingResponse {
 export interface Mutation {
   BlockUser: BlockUserResponse;
   UnblockUser: UnblockUserResponse;
+  SendMessage: SendMessageResponse;
   ReportUser: ReportUserResponse;
   CreateTag: CreateTagResponse;
   AcceptLike: AcceptLikeResponse;
@@ -156,6 +160,12 @@ export interface BlockUserMutationArgs {
 
 export interface UnblockUserMutationArgs {
   id: number;
+}
+
+export interface SendMessageMutationArgs {
+  receiverId: number;
+  text: string;
+  chatId: number | null;
 }
 
 export interface ReportUserMutationArgs {
@@ -233,6 +243,11 @@ export interface UnblockUserResponse {
   err: string | null;
 }
 
+export interface SendMessageResponse {
+  ok: boolean;
+  err: string | null;
+}
+
 export interface ReportUserResponse {
   ok: boolean;
   err: string | null;
@@ -291,6 +306,15 @@ export interface UserLoginResponse {
 export interface UserVerificationResponse {
   ok: boolean;
   err: string | null;
+}
+
+export interface Subscription {
+  MessageNotification: Message | null;
+  MessageSub: Message | null;
+}
+
+export interface MessageSubSubscriptionArgs {
+  userId: number;
 }
 
 export interface Report {

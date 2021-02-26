@@ -20,7 +20,8 @@ type User {
   fameRating: Int
   likeTo: [Like]
   likeFrom: [Like]
-  messages: [Message]
+  sent: [Message]
+  received: [Message]
   isBlocked: Boolean!
   isVerified: Boolean!
   createdAt: String

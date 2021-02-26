@@ -20,11 +20,17 @@ class Message extends BaseEntity {
   @Column()
   chatId: number;
 
-  @ManyToOne((type) => User, (user) => user.messages)
-  user: User;
+  @ManyToOne((type) => User, (user) => user.sent)
+  sender: User;
 
-  @Column()
-  userId: number;
+  @Column({ nullable: true })
+  senderId: number;
+
+  @ManyToOne((type) => User, (user) => user.received)
+  receiver: User;
+
+  @Column({ nullable: true })
+  receiverId: number;
 
   @Column({ type: "text" })
   text: string;

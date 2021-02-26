@@ -91,8 +91,11 @@ class User extends BaseEntity {
   @OneToMany((type) => Like, (like) => like.from, { nullable: true })
   likeFrom: Like[];
 
-  @OneToMany((type) => Message, (message) => message.user)
-  messages: Message[];
+  @OneToMany((type) => Message, (message) => message.sender)
+  sent: Message[];
+
+  @OneToMany((type) => Message, (message) => message.receiver)
+  received: Message[];
 
   @Column({ type: "boolean", default: false })
   isBlocked: boolean;
