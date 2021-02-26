@@ -1,6 +1,5 @@
 import { withFilter } from "graphql-yoga";
 import { MessageSubSubscriptionArgs } from "../../../types/graph";
-import Message from "../../../entities/Message";
 import User from "../../../entities/User";
 
 const resolvers = {
@@ -11,13 +10,17 @@ const resolvers = {
         (_, __, { pubSub }) => {
           return pubSub.asyncIterator("newMsg");
         },
-        (payload: Message, args: MessageSubSubscriptionArgs, { request }) => {
-          const user: User = request.user;
+        async (payload, args: MessageSubSubscriptionArgs, { context }) => {
+          const user: User = context.currentUser;
           const { userId } = args;
-          return (
-            (payload.senderId === userId && payload.receiverId === user.id) ||
-            (payload.senderId === user.id && payload.receiverId === userId)
-          );
+          try {
+            return (
+              (payload.senderId === userId && payload.receiverId === user.id) ||
+              (payload.senderId === user.id && payload.receiverId === userId)
+            );
+          } catch (err) {
+            return err.message;
+          }
         }
       )
     }

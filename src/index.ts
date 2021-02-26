@@ -18,10 +18,10 @@ const appOption: Options = {
   subscriptions: {
     path: SUBSCRIPTION_ENDPOINT,
     onConnect: async (connectionParams) => {
-      const token = connectionParams["Bearer"];
+      const token = connectionParams["Authorization"];
       if (token) {
         const user = await decodeJWT(
-          (token as string).includes(" ") ? token.split(" ")[1] : token
+          (token as string).includes(" ") ? token.split(" ")[2] : token
         );
         return {
           currentUser: user

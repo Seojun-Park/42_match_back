@@ -15,7 +15,10 @@ const resolvers: Resolvers = {
       Authentification(request);
       const { likeId } = args;
       try {
-        const like: Like | undefined = await Like.findOne({ id: likeId });
+        const like: Like | undefined = await Like.findOne(
+          { id: likeId },
+          { relations: ["from"] }
+        );
         if (like) {
           like.status = "ACCEPTED";
           like.isMatch = true;

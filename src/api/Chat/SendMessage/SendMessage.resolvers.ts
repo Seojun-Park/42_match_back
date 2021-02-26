@@ -42,11 +42,13 @@ const resolvers: Resolvers = {
           sender: user,
           text
         }).save();
-        user.sent.push(message);
-        receiver.received.push(message);
+        user.sent && user.sent.push(message);
+        receiver.sent && receiver.received.push(message);
         user.save();
         receiver.save();
-        pubSub.publish("newMsg", message);
+        pubSub.publish("newMsg", {
+          MessageSub: message
+        });
         return {
           ok: true,
           err: null

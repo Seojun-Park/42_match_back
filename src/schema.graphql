@@ -32,6 +32,22 @@ type UnblockUserResponse {
   err: String
 }
 
+type GetChatResponse {
+  ok: Boolean!
+  err: String
+  messages: [Message]
+}
+
+type Query {
+  GetChat(chatId: Int!): GetChatResponse!
+  GetMe: GetMeResponse!
+  GetUser(id: Int!): GetUserResponse!
+  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!
+  SearchUserByAge(age: Int!): SearchUserByAgeResponse!
+  users: [User]
+  ShowFameRanking: ShowFameRankingResponse!
+}
+
 type Subscription {
   MessageNotification: Message
   MessageSub(userId: Int!): Message
@@ -121,15 +137,6 @@ type GetMeResponse {
   ok: Boolean!
   err: String
   user: User
-}
-
-type Query {
-  GetMe: GetMeResponse!
-  GetUser(id: Int!): GetUserResponse!
-  SearchUser(lat: Float, lng: Float, location: String): SearchUserReponse!
-  SearchUserByAge(age: Int!): SearchUserByAgeResponse!
-  users: [User]
-  ShowFameRanking: ShowFameRankingResponse!
 }
 
 type GetUserResponse {
