@@ -16,6 +16,7 @@ import Tag from "./Tag";
 import Image from "./Image";
 import BlockedUser from "./Block";
 import Like from "./Like";
+import Message from "./Message";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -89,6 +90,9 @@ class User extends BaseEntity {
 
   @OneToMany((type) => Like, (like) => like.from, { nullable: true })
   likeFrom: Like[];
+
+  @OneToMany((type) => Message, (message) => message.user)
+  messages: Message[];
 
   @Column({ type: "boolean", default: false })
   isBlocked: boolean;
