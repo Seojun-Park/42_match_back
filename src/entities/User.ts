@@ -17,7 +17,6 @@ import Image from "./Image";
 import BlockedUser from "./Block";
 import Like from "./Like";
 import Message from "./Message";
-import Chat from "./Chat";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -91,9 +90,6 @@ class User extends BaseEntity {
 
   @OneToMany((type) => Like, (like) => like.from, { nullable: true })
   likeFrom: Like[];
-
-  @Column((type) => Chat)
-  chats: Chat[];
 
   @OneToMany((type) => Message, (message) => message.user)
   messages: Message[];

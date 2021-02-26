@@ -1,8 +1,0 @@
-type CreateChatResponse {
-  ok: Boolean!
-  err: String
-}
-
-type Mutation {
-  CreateChat(targetId: Int!): CreateChatResponse!
-}
