@@ -26,6 +26,9 @@ class Message extends BaseEntity {
   @Column()
   userId: number;
 
+  @Column({ type: "text" })
+  text: string;
+
   @CreateDateColumn()
   createdAt: string;
 
