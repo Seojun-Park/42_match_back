@@ -11,7 +11,7 @@ const resolvers = {
           return pubSub.asyncIterator("newMsg");
         },
         (payload: Message, _, context) => {
-          const receiver: User = context.user;
+          const receiver: User = context.currentUser;
           return payload.receiverId === receiver.id;
         }
       )
